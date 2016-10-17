@@ -1,4 +1,7 @@
 package com.weather.rest.DAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -7,9 +10,12 @@ import java.util.ResourceBundle;
 /**
  * Created by Leo on 03/10/2016.
  */
+@Repository
 public class singletonConnection
 {
+        @Autowired
         private Connection connection;
+        @Autowired
         private static singletonConnection instance;
         private static String url;
         private static String username;

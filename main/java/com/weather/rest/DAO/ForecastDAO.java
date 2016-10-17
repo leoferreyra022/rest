@@ -16,7 +16,7 @@ import java.util.List;
 public class ForecastDAO implements DAI<Forecast>
 {
 
-    private  Connection connection = singletonConnection.getInstance().getConnection();
+    private Connection connection = singletonConnection.getInstance().getConnection();
 
     public ForecastDAO() throws SQLException {
     }

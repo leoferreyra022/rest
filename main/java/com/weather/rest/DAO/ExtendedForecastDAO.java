@@ -1,12 +1,15 @@
 package com.weather.rest.DAO;
 
 import com.weather.rest.Domain.ExtendedForecast;
+import org.springframework.stereotype.Repository;
+
 import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Created by Leo on 04/10/2016.
  */
+@Repository
 public class ExtendedForecastDAO implements DAI<ExtendedForecast>
 {
     //private Connection connection = singletonConnection.getConnection();
