@@ -1,20 +1,22 @@
 package com.weather.rest.DAO;
 
 import com.weather.rest.Domain.Forecast;
-import org.springframework.stereotype.Component;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.sql.*;
 import java.util.List;
 
 /**
  * Created by Leo on 04/10/2016.
  */
-@Component
+
+@Repository
 public class ForecastDAO implements DAI<Forecast> {
 
-    private Connection connection = singletonConnection.getInstance().getConnection();
+    @Autowired
+    singletonConnection conn;
+    private Connection connection = conn.getConnection();
 
     public ForecastDAO() throws SQLException {
     }

@@ -6,12 +6,12 @@ import java.util.List;
  * Created by Leo on 03/10/2016.
  */
 public class Forecast {
+    private int id_forecast;
     private Location location;
     private CurrentDay currentDay;
     private Atmosphere atmosphere;
     private Wind wind;
     private List<ExtendedForecast> ExtendedForecast;// = new LinkedList<ExtendedForecast>();
-
 
     private Forecast(Location location, CurrentDay currentDay, Atmosphere atmosphere, Wind wind, List<ExtendedForecast> extendedForecast) {
         this.location = location;
@@ -19,6 +19,14 @@ public class Forecast {
         this.atmosphere = atmosphere;
         this.wind = wind;
         ExtendedForecast = extendedForecast;
+    }
+
+    public int getId_forecast() {
+        return id_forecast;
+    }
+
+    public void setId_forecast(int id_forecast) {
+        this.id_forecast = id_forecast;
     }
 
     public Location getLocation() {

@@ -1,6 +1,7 @@
 package com.weather.rest.DAO;
 
 import com.weather.rest.Domain.ExtendedForecast;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -12,7 +13,10 @@ import java.util.List;
  */
 @Repository
 public class ExtendedForecastDAO implements DAI<ExtendedForecast> {
-    private Connection connection = singletonConnection.getInstance().getConnection();
+
+    @Autowired
+    singletonConnection conn;
+    private Connection connection = conn.getConnection();
 
     public ExtendedForecastDAO() throws SQLException {
     }
