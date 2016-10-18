@@ -3,11 +3,17 @@ package com.weather.rest.Domain;
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Location
-{
+public class Location {
     private String city;
     private String country;
     private String region;
+
+    private Location(String city, String country, String region) {
+
+        this.city = city;
+        this.country = country;
+        this.region = region;
+    }
 
     public String getCity() {
         return city;
@@ -19,13 +25,6 @@ public class Location
 
     public String getRegion() {
         return region;
-    }
-
-    private Location(String city, String country, String region) {
-
-        this.city = city;
-        this.country = country;
-        this.region = region;
     }
 
     @Override

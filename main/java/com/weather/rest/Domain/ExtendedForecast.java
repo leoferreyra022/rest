@@ -3,8 +3,7 @@ package com.weather.rest.Domain;
 /**
  * Created by Leo on 03/10/2016.
  */
-public class ExtendedForecast
-{
+public class ExtendedForecast {
     private CurrentDay day;
 
     private ExtendedForecast(CurrentDay day) {

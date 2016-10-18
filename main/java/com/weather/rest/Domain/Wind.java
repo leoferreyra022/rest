@@ -3,10 +3,15 @@ package com.weather.rest.Domain;
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Wind
-{
+public class Wind {
     private int velocity;
     private char direction;
+
+    private Wind(int velocity, char direction) {
+
+        this.velocity = velocity;
+        this.direction = direction;
+    }
 
     public int getVelocity() {
         return velocity;
@@ -14,12 +19,6 @@ public class Wind
 
     public char getDirection() {
         return direction;
-    }
-
-    private Wind(int velocity, char direction) {
-
-        this.velocity = velocity;
-        this.direction = direction;
     }
 
     @Override

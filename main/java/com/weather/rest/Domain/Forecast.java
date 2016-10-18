@@ -5,8 +5,7 @@ import java.util.List;
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Forecast
-{
+public class Forecast {
     private Location location;
     private CurrentDay currentDay;
     private Atmosphere atmosphere;
@@ -92,7 +91,7 @@ public class Forecast
         }
 
         public Forecast createDefaultForecast() {
-            return new Forecast(locb.createDefaultLocation(),cdb.createDefaultCurrentDay(), atmosphere, wind, extendedForecast);
+            return new Forecast(locb.createDefaultLocation(), cdb.createDefaultCurrentDay(), atmosphere, wind, extendedForecast);
         }
     }
 }

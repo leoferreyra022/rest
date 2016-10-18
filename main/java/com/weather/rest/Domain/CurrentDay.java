@@ -1,20 +1,19 @@
 package com.weather.rest.Domain;
+
 import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Leo on 03/10/2016.
  */
-public class CurrentDay
-{
+public class CurrentDay {
     private Date date;
     private int today;// = Calendar.getInstance().DAY_OF_WEEK;
     private String description;
     private int maxTemp;
     private int minTemp;
 
-    public CurrentDay()
-    {
+    public CurrentDay() {
 
     }
 
@@ -95,7 +94,7 @@ public class CurrentDay
         }
 
         public CurrentDay createDefaultCurrentDay() {
-            return new CurrentDay(new Date(),Calendar.getInstance().DAY_OF_WEEK, "Dia soleado", 12, 24);
+            return new CurrentDay(new Date(), Calendar.getInstance().DAY_OF_WEEK, "Dia soleado", 12, 24);
         }
     }
 }

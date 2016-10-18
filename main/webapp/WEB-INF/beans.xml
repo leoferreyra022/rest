@@ -3,14 +3,26 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <context:property-placeholder/>
     <context:annotation-config/>
+
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="com.weather.rest.DAO.*"></context:component-scan>
+    <context:component-scan base-package="com.weather.rest.Control.*"></context:component-scan>
+    <context:component-scan base-package="com.weather.rest.Domain.*"></context:component-scan>
+    <context:component-scan base-package="com.weather.rest.Client.*"></context:component-scan>
+
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
+
     <jaxrs:server id="services" address="/">
+
         <jaxrs:serviceBeans>
             <bean class="com.weather.rest.HelloWorld"/>
         </jaxrs:serviceBeans>
+
         <jaxrs:providers>
             <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
         </jaxrs:providers>
+
     </jaxrs:server>
+
 </beans>

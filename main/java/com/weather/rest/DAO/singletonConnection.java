@@ -1,4 +1,5 @@
 package com.weather.rest.DAO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,28 +12,23 @@ import java.util.ResourceBundle;
  * Created by Leo on 03/10/2016.
  */
 @Repository
-public class singletonConnection
-{
-        @Autowired
-        private Connection connection;
-        @Autowired
-        private static singletonConnection instance;
-        private static String url;
-        private static String username;
-        private static String password;
+public class singletonConnection {
+    @Autowired
+    private static singletonConnection instance;
+    private static String url;
+    private static String username;
+    private static String password;
+    //@Autowired
+    private Connection connection;
 
     private singletonConnection(String url, String username, String password) throws SQLException {
         try {
             this.connection = DriverManager.getConnection(url, username, password);
-            if (this.connection!=null)System.out.println("Conectado a la base de datos");
+            if (this.connection != null) System.out.println("Conectado a la base de datos");
         } catch (SQLException ex) {
             System.out.println("Conexion fallida  : " + ex.getMessage());
             ex.printStackTrace();
         }
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 
     public static singletonConnection getInstance() throws SQLException {
@@ -44,12 +40,16 @@ public class singletonConnection
                 username = rb.getString("username");
                 password = rb.getString("password");
                 instance = new singletonConnection(url, username, password);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
             }
-            catch(Exception e){System.out.println("Error: "+e.getMessage());}
-        }
-        else if (instance.getConnection().isClosed()) {
-            instance = new singletonConnection(url,username,password);
+        } else if (instance.getConnection().isClosed()) {
+            instance = new singletonConnection(url, username, password);
         }
         return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }
