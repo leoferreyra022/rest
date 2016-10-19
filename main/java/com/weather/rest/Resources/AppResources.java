@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 @Resource
 @Path("/resources")
 public class AppResources {
+
     @GET
     @Path("/{id_forecast}")
     @Produces("text/plain")

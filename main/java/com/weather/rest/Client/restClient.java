@@ -2,7 +2,10 @@ package com.weather.rest.Client;
 
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 /**

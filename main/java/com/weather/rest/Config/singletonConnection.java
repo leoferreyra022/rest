@@ -1,8 +1,8 @@
-package com.weather.rest.DAO;
+package com.weather.rest.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,6 +49,7 @@ public class singletonConnection {
         return instance;
     }
 
+    @Bean
     public Connection getConnection() {
         return connection;
     }

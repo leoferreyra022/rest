@@ -13,11 +13,12 @@ public class Forecast {
     private Wind wind;
     private List<ExtendedForecast> ExtendedForecast;// = new LinkedList<ExtendedForecast>();
 
-    private Forecast(Location location, CurrentDay currentDay, Atmosphere atmosphere, Wind wind, List<ExtendedForecast> extendedForecast) {
+    private Forecast(int id, Location location, CurrentDay currentDay, Atmosphere atmosphere, Wind wind, List<ExtendedForecast> extendedForecast) {
         this.location = location;
         this.currentDay = currentDay;
         this.atmosphere = atmosphere;
         this.wind = wind;
+        this.id_forecast = id;
         ExtendedForecast = extendedForecast;
     }
 
@@ -52,6 +53,7 @@ public class Forecast {
     @Override
     public String toString() {
         return "Forecast{" +
+                "id=" + id_forecast +
                 "location=" + location +
                 ", currentDay=" + currentDay +
                 ", atmosphere=" + atmosphere +
@@ -61,6 +63,7 @@ public class Forecast {
     }
 
     public static class ForecastBuilder {
+        private int idb;
         private Location.LocationBuilder locb;
         private Location location;
         private CurrentDay.CurrentDayBuilder cdb;
@@ -95,11 +98,11 @@ public class Forecast {
         }
 
         public Forecast createForecast() {
-            return new Forecast(location, currentDay, atmosphere, wind, extendedForecast);
+            return new Forecast(idb, location, currentDay, atmosphere, wind, extendedForecast);
         }
 
         public Forecast createDefaultForecast() {
-            return new Forecast(locb.createDefaultLocation(), cdb.createDefaultCurrentDay(), atmosphere, wind, extendedForecast);
+            return new Forecast(idb, locb.createDefaultLocation(), cdb.createDefaultCurrentDay(), atmosphere, wind, extendedForecast);
         }
     }
 }

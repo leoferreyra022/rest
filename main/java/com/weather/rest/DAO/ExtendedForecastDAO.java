@@ -1,5 +1,6 @@
 package com.weather.rest.DAO;
 
+import com.weather.rest.Config.singletonConnection;
 import com.weather.rest.Domain.ExtendedForecast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

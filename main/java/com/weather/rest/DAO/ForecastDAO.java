@@ -4,7 +4,10 @@ import com.weather.rest.Domain.Forecast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -15,8 +18,9 @@ import java.util.List;
 public class ForecastDAO implements DAI<Forecast> {
 
     @Autowired
-    singletonConnection conn;
-    private Connection connection = conn.getConnection();
+    private Connection connection;
+    //singletonConnection conn;
+    //private Connection connection = conn.getConnection();
 
     public ForecastDAO() throws SQLException {
     }
@@ -58,7 +62,9 @@ public class ForecastDAO implements DAI<Forecast> {
     }
 
     @Override
-    public List<Forecast> getList() {
+    public List<Forecast> getList()
+    {
+
         return null;
     }
 

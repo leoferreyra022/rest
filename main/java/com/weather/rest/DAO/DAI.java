@@ -1,6 +1,7 @@
 package com.weather.rest.DAO;
 
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
