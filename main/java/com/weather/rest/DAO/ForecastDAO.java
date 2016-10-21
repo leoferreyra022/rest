@@ -13,23 +13,23 @@ import java.util.List;
  */
 
 @Repository
-public class ForecastDAO implements DAI<Forecast> {
-
+public class ForecastDAO implements DAI<Forecast>
+{
     @Autowired
     singletonConnection conn;
     @Autowired
     Forecast forecast;
     private Connection connection = conn.getInstance().getConnection();
 
-    private final String INSERT = "INSERT * INTO forecast (id_wind,id_atmosphere,id_day,id_location) values(?,?,?,?) ";
-    private final String DELETE = "DELETE FROM forecast WHERE id_forecast = ";
-    private final String FIND_BY_ID = "SELECT * FROM forecast wind w, location l, atmosphere a, day d, forecast f "+
+    private static final String INSERT = "INSERT INTO forecast (id_wind,id_atmosphere,id_day,id_location) values(?,?,?,?) ";
+    private static final String DELETE = "DELETE FROM forecast WHERE id_forecast = ";
+    private static final String FIND_BY_ID = "SELECT * FROM forecast wind w, location l, atmosphere a, day d, forecast f "+
             "WHERE f.id_wind = w.idwind "+
             "and f.id_location = l.idlocation "+
             "and f.id_atmosphere = a.idatmosphere "+
             "and f.id_day = d.idday "+
             "and f.id_forecast =";
-    private final String FIND_ALL = "SELECT * FROM forecast wind w, location l, atmosphere a, day d, forecast f"+
+    private static final String FIND_ALL = "SELECT * FROM forecast wind w, location l, atmosphere a, day d, forecast f"+
             "WHERE f.id_wind = w.idwind "+
             "and f.id_location = l.idlocation "+
             "and f.id_atmosphere = a.idatmosphere "+
@@ -133,9 +133,9 @@ public class ForecastDAO implements DAI<Forecast> {
                     e.printStackTrace();
                 }
             }
-            if(result==0)return "Fallo al insertar Forecast";
-            else return msg;
+            if(result==0)msg = "Fallo al insertar Forecast";
         }
+        return msg;
     }
 
     @Override
@@ -166,8 +166,8 @@ public class ForecastDAO implements DAI<Forecast> {
                     e.printStackTrace();
                 }
             }
-            if(result==0)return "Fallo al borrar Forecast";
-            else return msg;
+            if(result==0)msg = "Fallo al borrar Forecast";
         }
+        return msg;
     }
 }

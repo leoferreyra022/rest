@@ -16,13 +16,14 @@ import java.util.ResourceBundle;
 @Component
 public class singletonConnection
 {
+    @Autowired
     private static singletonConnection instance;
     private static String url;
     private static String username;
     private static String password;
     private Connection connection;
 
-    private singletonConnection(String url, String username, String password) throws SQLException {
+    private singletonConnection(String url, String username, String password) {
         try {
             this.connection = DriverManager.getConnection(url, username, password);
             if (this.connection != null) System.out.println("Conectado a la base de datos");
@@ -32,7 +33,7 @@ public class singletonConnection
         }
     }
 
-    public static singletonConnection getInstance() throws SQLException {
+    public static singletonConnection getInstance() {
 
         if (instance == null) {
             try {
@@ -44,11 +45,17 @@ public class singletonConnection
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
-        } else if (instance.getConnection().isClosed()) {
-            instance = new singletonConnection(url, username, password);
-        }
+        } else
+            try {
+                if (instance.getConnection().isClosed()) {
+                    instance = new singletonConnection(url, username, password);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         return instance;
-    }
+        }
+
 
     @Bean
     public Connection getConnection() {

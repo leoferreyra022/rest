@@ -26,6 +26,22 @@ public class Atmosphere
     public Atmosphere() {
     }
 
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
+
+    public void setPressure(Double pressure) {
+        this.pressure = pressure;
+    }
+
+    public void setVisibility(Double visibility) {
+        this.visibility = visibility;
+    }
+
+    public void setRising(Double rising) {
+        this.rising = rising;
+    }
+
     public int getIdAtmosphere() {
         return idAtmosphere;
     }
