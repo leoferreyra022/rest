@@ -27,9 +27,9 @@ public class yahooProxy
         return response;
     }
 
-    public void Mapping()
+    /*public void Mapping()
     {
 
-    }
+    }*/
 
 }
