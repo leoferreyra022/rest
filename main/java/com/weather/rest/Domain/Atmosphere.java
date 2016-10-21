@@ -1,9 +1,16 @@
 package com.weather.rest.Domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Atmosphere {
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Atmosphere
+{
+    private int idAtmosphere;
     private int humidity;
     private Double pressure;
     private Double visibility;
@@ -14,6 +21,17 @@ public class Atmosphere {
         this.pressure = pressure;
         this.visibility = visibility;
         this.rising = rising;
+    }
+
+    public Atmosphere() {
+    }
+
+    public int getIdAtmosphere() {
+        return idAtmosphere;
+    }
+
+    public void setIdAtmosphere(int idAtmosphere) {
+        this.idAtmosphere = idAtmosphere;
     }
 
     public int getHumidity() {
@@ -41,14 +59,17 @@ public class Atmosphere {
                 ", rising=" + rising +
                 '}';
     }
-
+@Component
     public static class AtmosphereBuilder {
         private int humidity;
         private Double pressure;
         private Double visibility;
         private Double rising;
 
-        public AtmosphereBuilder withHumidity(int humidity) {
+    public AtmosphereBuilder() {
+    }
+
+    public AtmosphereBuilder withHumidity(int humidity) {
             this.humidity = humidity;
             return this;
         }
@@ -67,6 +88,9 @@ public class Atmosphere {
             this.rising = rising;
             return this;
         }
+
+        public static AtmosphereBuilder anAtmosphere()
+        {return new AtmosphereBuilder();}
 
         public Atmosphere createAtmosphere() {
             return new Atmosphere(humidity, pressure, visibility, rising);

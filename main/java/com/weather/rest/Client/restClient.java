@@ -18,8 +18,8 @@ public class restClient {
     @Consumes("application/json")
     @Produces("application/json")
     public Response someMethod(@QueryParam(value = "someQueryParamHere") String query)
-            throws IllegalAccessException, InstantiationException {
-
+            throws IllegalAccessException, InstantiationException
+    {
         return Response.class.newInstance();
     }
 }

@@ -9,7 +9,8 @@
     <context:annotation-config/>
 
     <context:component-scan base-package="com.weather.rest.DAO,com.weather.rest.Control,
-    com.weather.rest.Domain,com.weather.rest.Client"/>
+    com.weather.rest.Domain,com.weather.rest.Client,com.weather.rest.Config,com.weather.rest.Resources
+    ,com.weather.rest.Proxy,com.weather.rest.Examples"/>
 
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
@@ -18,6 +19,7 @@
 
         <jaxrs:serviceBeans>
             <bean class="com.weather.rest.Examples.HelloWorld"/>
+            <bean class="com.weather.rest.Resources.AppResources"/>
         </jaxrs:serviceBeans>
 
         <jaxrs:providers>

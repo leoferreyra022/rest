@@ -1,13 +1,19 @@
 package com.weather.rest.Domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+
 import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Leo on 03/10/2016.
  */
-public class CurrentDay {
-    private Date date;
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CurrentDay
+{
+    private String date;
     private int today;// = Calendar.getInstance().DAY_OF_WEEK;
     private String description;
     private int maxTemp;
@@ -17,9 +23,9 @@ public class CurrentDay {
 
     }
 
-    private CurrentDay(Date date, int today, String description, int maxTemp, int minTemp) {
+    private CurrentDay(String date, int today, String description, int maxTemp, int minTemp) {
         this.date = date;
-        this.today = Calendar.getInstance().DAY_OF_WEEK;
+        this.today = today;
         this.description = description;
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
@@ -37,7 +43,7 @@ public class CurrentDay {
         return minTemp;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -56,20 +62,20 @@ public class CurrentDay {
                 ", description='" + description + '\'' +
                 '}';
     }
-
+    @Component
     public static class CurrentDayBuilder {
-        private Date date;
+        private String date;
         private int dayOfWeek;
         private String description;
         private int maxTemp;
         private int minTemp;
 
-        public CurrentDayBuilder withDate(Date date) {
+        public CurrentDayBuilder withDate(String date) {
             this.date = date;
             return this;
         }
 
-        public CurrentDayBuilder withToday(int today) {
+        public CurrentDayBuilder withDayofWeek(int today) {
             this.dayOfWeek = today;
             return this;
         }
@@ -89,12 +95,15 @@ public class CurrentDay {
             return this;
         }
 
+        public static CurrentDayBuilder aCurrentDay()
+        {return new CurrentDayBuilder();}
+
         public CurrentDay createCurrentDay() {
             return new CurrentDay(date, dayOfWeek, description, maxTemp, minTemp);
         }
 
         public CurrentDay createDefaultCurrentDay() {
-            return new CurrentDay(new Date(), Calendar.getInstance().DAY_OF_WEEK, "Dia soleado", 12, 24);
+            return new CurrentDay("12/10/2016", Calendar.getInstance().DAY_OF_WEEK, "Dia soleado", 12, 24);
         }
     }
 }

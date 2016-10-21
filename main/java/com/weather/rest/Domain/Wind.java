@@ -1,23 +1,38 @@
 package com.weather.rest.Domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Wind {
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Wind
+{
+    private int idWind;
     private int velocity;
-    private char direction;
+    private String direction;
 
-    private Wind(int velocity, char direction) {
-
+    private Wind(int velocity, String direction)
+    {
         this.velocity = velocity;
         this.direction = direction;
+    }
+
+    public int getIdWind() {
+        return idWind;
+    }
+
+    public void setIdWind(int idWind) {
+        this.idWind = idWind;
     }
 
     public int getVelocity() {
         return velocity;
     }
 
-    public char getDirection() {
+    public String getDirection() {
         return direction;
     }
 
@@ -28,27 +43,31 @@ public class Wind {
                 ", direction=" + direction +
                 '}';
     }
-
-    public static class WindBuilder {
+    @Component
+    public static class WindBuilder
+    {
         private int velocity;
-        private char direction;
+        private String direction;
 
         public WindBuilder withVelocity(int velocity) {
             this.velocity = velocity;
             return this;
         }
 
-        public WindBuilder withDirection(char direction) {
+        public WindBuilder withDirection(String direction) {
             this.direction = direction;
             return this;
         }
+
+        public static WindBuilder aWind()
+        {return new WindBuilder();}
 
         public Wind createWind() {
             return new Wind(velocity, direction);
         }
 
         public Wind createDefaultWind() {
-            return new Wind(20, 'N');
+            return new Wind(20, "N");
         }
     }
 }

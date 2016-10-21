@@ -2,6 +2,8 @@ package com.weather.rest.DAO;
 
 import com.weather.rest.Domain.Wind;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -27,5 +29,13 @@ public class WindDAO implements DAI<Wind> {
     @Override
     public String delete(int id) {
         return null;
+    }
+
+    public static Wind getWind(ResultSet resultSet) throws SQLException
+    {
+        Wind.WindBuilder windBuilder = Wind.WindBuilder.aWind()
+                .withDirection(resultSet.getString("direction"))
+                .withVelocity(resultSet.getInt("velocity"));
+        return windBuilder.createWind();
     }
 }

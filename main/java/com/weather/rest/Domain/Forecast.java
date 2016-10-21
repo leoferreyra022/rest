@@ -1,11 +1,17 @@
 package com.weather.rest.Domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Forecast {
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Forecast
+{
     private int id_forecast;
     private Location location;
     private CurrentDay currentDay;
@@ -19,7 +25,7 @@ public class Forecast {
         this.atmosphere = atmosphere;
         this.wind = wind;
         this.id_forecast = id;
-        ExtendedForecast = extendedForecast;
+        this.ExtendedForecast = extendedForecast;
     }
 
     public int getId_forecast() {
@@ -46,8 +52,29 @@ public class Forecast {
         return wind;
     }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setCurrentDay(CurrentDay currentDay) {
+        this.currentDay = currentDay;
+    }
+
+    public void setAtmosphere(Atmosphere atmosphere) {
+        this.atmosphere = atmosphere;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+
     public List<com.weather.rest.Domain.ExtendedForecast> getExtendedForecast() {
         return ExtendedForecast;
+    }
+
+    public void setExtendedForecast(List<com.weather.rest.Domain.ExtendedForecast> extendedForecast) {
+        this.ExtendedForecast = extendedForecast;
     }
 
     @Override
@@ -62,7 +89,9 @@ public class Forecast {
                 '}';
     }
 
+    @Component
     public static class ForecastBuilder {
+
         private int idb;
         private Location.LocationBuilder locb;
         private Location location;
@@ -71,6 +100,10 @@ public class Forecast {
         private Atmosphere atmosphere;
         private Wind wind;
         private List<ExtendedForecast> extendedForecast;
+
+        public void withIdb(int idb) {
+            this.idb = idb;
+        }
 
         public ForecastBuilder withLocation(Location location) {
             this.location = location;

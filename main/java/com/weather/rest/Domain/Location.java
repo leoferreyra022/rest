@@ -1,18 +1,33 @@
 package com.weather.rest.Domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by Leo on 03/10/2016.
  */
-public class Location {
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Location
+{
+    private int idLocation;
     private String city;
     private String country;
     private String region;
 
-    private Location(String city, String country, String region) {
-
+    private Location(String city, String country, String region)
+    {
         this.city = city;
         this.country = country;
         this.region = region;
+    }
+
+    public int getIdLocation() {
+        return idLocation;
+    }
+
+    public void setIdLocation(int idLocation) {
+        this.idLocation = idLocation;
     }
 
     public String getCity() {
@@ -35,26 +50,30 @@ public class Location {
                 ", region='" + region + '\'' +
                 '}';
     }
-
-    public static class LocationBuilder {
+    @Component
+    public static class LocationBuilder
+    {
         private String city;
         private String country;
         private String region;
 
-        public LocationBuilder setCity(String city) {
+        public LocationBuilder withCity(String city) {
             this.city = city;
             return this;
         }
 
-        public LocationBuilder setCountry(String country) {
+        public LocationBuilder withCountry(String country) {
             this.country = country;
             return this;
         }
 
-        public LocationBuilder setRegion(String region) {
+        public LocationBuilder withRegion(String region) {
             this.region = region;
             return this;
         }
+
+        public static LocationBuilder aLocation()
+        {return new LocationBuilder();}
 
         public Location createLocation() {
             return new Location(city, country, region);

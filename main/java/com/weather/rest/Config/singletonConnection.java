@@ -2,6 +2,7 @@ package com.weather.rest.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -13,8 +14,8 @@ import java.util.ResourceBundle;
  * Created by Leo on 03/10/2016.
  */
 @Component
-public class singletonConnection {
-    @Autowired
+public class singletonConnection
+{
     private static singletonConnection instance;
     private static String url;
     private static String username;

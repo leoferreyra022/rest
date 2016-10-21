@@ -1,9 +1,15 @@
 package com.weather.rest.Domain;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by Leo on 03/10/2016.
  */
-public class ExtendedForecast {
+@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ExtendedForecast
+{
     private CurrentDay day;
 
     private ExtendedForecast(CurrentDay day) {
@@ -23,8 +29,9 @@ public class ExtendedForecast {
                 "day=" + day +
                 '}';
     }
-
-    public static class ExtendedForecastBuilder {
+@Component
+    public static class ExtendedForecastBuilder
+    {
         private CurrentDay.CurrentDayBuilder defaultDay;
         private CurrentDay day;
 
