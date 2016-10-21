@@ -10,7 +10,7 @@
 
     <context:component-scan base-package="com.weather.rest.DAO,com.weather.rest.Control,
     com.weather.rest.Domain,com.weather.rest.Client,com.weather.rest.Config,com.weather.rest.Resources
-    ,com.weather.rest.Proxy,com.weather.rest.Examples"/>
+    ,com.weather.rest.Proxy,com.weather.rest.Examples,com.weather.rest.Services"/>
 
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>

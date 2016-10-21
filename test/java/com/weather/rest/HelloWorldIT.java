@@ -1,4 +1,4 @@
-package java;
+package com.weather.rest;
 
 import com.weather.rest.Examples.JsonBean;
 import org.apache.cxf.helpers.IOUtils;

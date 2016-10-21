@@ -3,13 +3,12 @@ package com.weather.rest.Resources;
 import com.weather.rest.DAO.*;
 import com.weather.rest.Domain.Atmosphere;
 import com.weather.rest.Domain.Forecast;
+import com.weather.rest.Domain.ForecastResponse;
+import com.weather.rest.Services.yahooService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.List;
 
 /**
@@ -31,6 +30,8 @@ public class AppResources
     private LocationDAO locationDAO;
     @Autowired
     private WindDAO windDAO;
+    @Autowired
+    private yahooService forecastService;
 
     @GET
     @Path("/Forecast/{id_forecast}")
@@ -40,9 +41,18 @@ public class AppResources
     }
 
     @GET
-    @Path("/AllForecast/")
+    @Path("/AllForecast")
     @Produces("application/json")
     public List<Forecast> getAllForecast() {
         return forecastDAO.getList();
+    }
+
+    @POST
+    @Path("/serviceForecast")
+    @Produces("application/json")
+    public ForecastResponse serviceForecast(@QueryParam(value = "country") String country,
+                                         @QueryParam(value = "city") String city)
+    {
+        return forecastService.saveForecast(country, city);
     }
 }
